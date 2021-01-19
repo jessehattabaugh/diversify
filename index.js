@@ -82,7 +82,6 @@ for (const symbol of wantedSymbols) {
 	//console.log(`${symbol} pcp24h is ${pcp24h}`);
 	totalPcp24h += pcp24h;
 	coins[symbol].pcp24h = pcp24h;
-
 }
 
 for (const symbol of wantedSymbols) {
@@ -94,10 +93,10 @@ for (const symbol of wantedSymbols) {
 	coins[symbol].pcp24hp = coins[symbol].pcp24h / totalPcp24h;
 	// calculate percentage of balance
 	coins[symbol].per =
-		(equalPercentage * 0.8) +
-		(coins[symbol].mcp * 0.1) +
-		(coins[symbol].pcp30dp * 0.1) +
-		(coins[symbol].pcp24hp * 0.1);
+		equalPercentage * 0.7 +
+		coins[symbol].mcp * 0.1 +
+		coins[symbol].pcp30dp * 0.1 +
+		coins[symbol].pcp24hp * 0.1;
 	// calculate position in us dollars
 	coins[symbol].usd = Math.floor(balance * coins[symbol].per * 100) / 100;
 }
