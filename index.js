@@ -69,17 +69,17 @@ for (const symbol of wantedSymbols) {
 	);
 	const data = await response.json();
 	const marketCap = data.market_data.market_cap.usd;
-	console.log(`${symbol} market cap is ${marketCap}`);
+	//console.log(`${symbol} market cap is ${marketCap}`);
 	totalCap += marketCap;
 	coins[symbol].mc = marketCap;
 
 	const pcp30d = data.market_data.price_change_percentage_30d;
-	console.log(`${symbol} pcp30d is ${pcp30d}`);
+	//console.log(`${symbol} pcp30d is ${pcp30d}`);
 	totalPcp30d += pcp30d;
 	coins[symbol].pcp30d = pcp30d;
 
 	const pcp24h = data.market_data.price_change_percentage_24h;
-	console.log(`${symbol} pcp24h is ${pcp24h}`);
+	//console.log(`${symbol} pcp24h is ${pcp24h}`);
 	totalPcp24h += pcp24h;
 	coins[symbol].pcp24h = pcp24h;
 
@@ -94,10 +94,10 @@ for (const symbol of wantedSymbols) {
 	coins[symbol].pcp24hp = coins[symbol].pcp24h / totalPcp24h;
 	// calculate percentage of balance
 	coins[symbol].per =
-		(coins[symbol].mcp * 0.16) +
-		(equalPercentage * 0.50) +
-		(coins[symbol].pcp30dp * 0.16) +
-		(-coins[symbol].pcp24hp * 0.16);
+		(equalPercentage * 0.8) +
+		(coins[symbol].mcp * 0.1) +
+		(coins[symbol].pcp30dp * 0.1) +
+		(coins[symbol].pcp24hp * 0.1);
 	// calculate position in us dollars
 	coins[symbol].usd = Math.floor(balance * coins[symbol].per * 100) / 100;
 }
